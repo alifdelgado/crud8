@@ -42,9 +42,17 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $validate = request()->validate([
+            'name'          =>  'required|max:140|unique:projects',
+            'description'   =>  'nullable|string|min:10',
+        ]);
+        Project::create([
+            'name'          =>  $validate['name'],
+            'description'   =>  $validate['description']
+        ]);
+        return redirect(route('projects.index'))->with('success', 'Proyecto creado correctamente');
     }
 
     /**
@@ -66,7 +74,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $update = true;
+        $title = "Editar proyecto";
+        $textButton = "Editar";
+        $route = route("projects.update", $project);
+        return view("projects.edit", compact("update", "title", "textButton", "route", "project"));
     }
 
     /**
@@ -76,9 +88,17 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Project $project)
     {
-        //
+        $validate = request()->validate([
+            'name'          =>  'required|max:140|unique:projects',
+            'description'   =>  'nullable|string|min:10',
+        ]);
+        $project->update([
+            'name'          =>  $validate['name'],
+            'description'   =>  $validate['description']
+        ]);
+        return back()->with('success', 'Proyecto actualizado correctamente');
     }
 
     /**

@@ -12,7 +12,7 @@
                         <span class="w-3/5">{{ $project->description }}</span>
                         <span class="w-1/5">{{ $project->created_at->diffForHumans() }}</span>
                         <span class="w-1/5 divide-x-2">
-                            <button type="button" class="text-blue-500">Editar</button>
+                            <a href="{{ route('projects.edit', $project) }}" class="text-blue-500" >Editar</a>
                             <button type="button" class="text-red-500">Eliminar</button>
                         </span>
                     </li>

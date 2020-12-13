@@ -21,7 +21,7 @@
         <div class="w-full px-3 mt-5">
             <label for="description" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Descripción</label>
             <textarea type="text" name="description" class="no-resize appareance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 p-3 rounded focus:outline-none focus:bg-gray-300 focus:shadow-inner shadow-lg">{{ old('description') ?? $project->description }}</textarea>
-            @error('name')
+            @error('description')
                 <div class="border border-red-400 rounded-b bg-red-100 mt-1 px-4 py-3 text-red-700">
                     {{ $message }}
                 </div>
